@@ -2,7 +2,7 @@
 ## Locator Form qa-framework
 QA-frameowrk for the Locator Form
 
-[![Build Status](https://github.com/I-TECH-UW/Locator-Form-qa-framework/actions/workflows/qa.yml/badge.svg)](https://github.com/I-TECH-UW/openelis-qaframework/actions/workflows/qa.yml)
+[![Build Status](https://github.com/I-TECH-UW/Locator-Form-qa-framework/actions/workflows/qa.yml/badge.svg)](https://github.com/I-TECH-UW/Locator-Form-qa-framework/actions/workflows/qa.yml)
 
 
 ## Installing dependencies 
