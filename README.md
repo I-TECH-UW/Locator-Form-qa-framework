@@ -1,2 +1,2 @@
-# Locator-Form-qa-framework
+# Locator Form qa-framework
 QA-frameowrk for the Locator Form
