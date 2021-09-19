@@ -1,4 +1,4 @@
-name: OpenELIS QA
+name: LOCATOR FORM QA BUILD
 on:
   push:
     branches: [main]
