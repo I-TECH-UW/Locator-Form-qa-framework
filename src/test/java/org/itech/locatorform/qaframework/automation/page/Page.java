@@ -188,6 +188,10 @@ public abstract class Page {
 		return findElement(By.id(id));
 	}
 
+	public WebElement findElementByName(String name) {
+		return findElement(By.name(name));
+	}
+
 	public String getText(By by) {
 		return findElement(by).getText();
 	}
@@ -228,7 +232,19 @@ public abstract class Page {
 
 	public void clickOnByJavascript(By by) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);", findElement(by));
+		js.executeScript("var evt = document.createEvent('MouseEvents');"
+				+ "evt.initMouseEvent('click',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);"
+				+ "arguments[0].dispatchEvent(evt);", findElement(by));
+	}
+
+	/**
+	 * Forcefuly selects a React option by Javascript. use name attribute
+	 */
+	public void selectReactOptionByJavacript(String name) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("document.getElementsByName('" + name + "')[0].type='visible';");
+		findElementByName(name).sendKeys(Keys.chord(Keys.DOWN, Keys.DOWN, Keys.ENTER));
+		js.executeScript("document.getElementsByName('" + name + "')[0].type='hidden';");
 	}
 
 	public void clickOnLast(By by) {

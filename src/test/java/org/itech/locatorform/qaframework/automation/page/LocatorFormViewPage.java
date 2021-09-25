@@ -13,6 +13,13 @@ public class LocatorFormViewPage extends Page {
 
     private static final By RADIO_BUTTON_NON_RESDENT = By.id("nonresident");
 
+    private static final By FIELD_FLIGHT_NUMBER = By.name("flightNumber");
+
+    private static final By FIELD_SEAT_NUMBER = By.name("seatNumber");
+
+    private static final By FIELD_ARRIVAL_DATE = By.name("arrivalDate");
+
+
     private static final By LABEL_RESDENT = By.xpath("//*[@id='passengerTypeInformation']/div/div/label[2]");
 
     private static final By LABEL_NON_RESDENT = By.xpath("//*[@id='passengerTypeInformation']/div/div/label[3]");
@@ -42,4 +49,23 @@ public class LocatorFormViewPage extends Page {
         clickOnByJavascript(BUTTON_NEXT);
     }
 
+    public void selectAirLine() {
+        selectReactOptionByJavacript("airlineName");
+    }
+
+    public void selectPurposeOfVist() {
+        selectReactOptionByJavacript("visitPurpose");
+    }
+
+    public void enterFlightNumber(String flightNumber) {
+        setText(FIELD_FLIGHT_NUMBER, flightNumber);
+    }
+
+    public void enterSeatNumber(String seatNumber) {
+        setText(FIELD_SEAT_NUMBER, seatNumber);
+    }
+
+    public void enterArrivalDate(String date) {
+        setText(FIELD_ARRIVAL_DATE, date);
+    }
 }

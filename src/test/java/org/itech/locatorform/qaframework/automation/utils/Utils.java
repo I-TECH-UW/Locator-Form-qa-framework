@@ -8,7 +8,7 @@ public class Utils {
 	
 	public static String getCurrentDate() {
 		Date date = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		return formatter.format(date);
 	}
 	
@@ -17,7 +17,7 @@ public class Utils {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.add(Calendar.DATE, 1);
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		return formatter.format(cal.getTime());
 	}
 	
@@ -26,18 +26,7 @@ public class Utils {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.add(Calendar.DAY_OF_MONTH, -1);
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		return formatter.format(cal.getTime());
-	}
-	
-	public static String generateDobYearFromAge(String age) {
-		Date date = new Date();
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		int currentAge = Integer.parseInt(age.trim());
-		cal.add(Calendar.YEAR, -currentAge);
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
-		String strYear = formatter.format(cal.getTime());
-		return strYear;
-	}
+	}	
 }
