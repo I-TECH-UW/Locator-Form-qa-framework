@@ -41,8 +41,8 @@ public class LocatorFormSteps extends TestBase {
         locatorFormViewPage.go();
     }
 
-    @Then("Public View Form loads")
-    public void publicViewFormLoads() {
+    @Then("'Passenger Type' Page loads")
+    public void loadPassengerTypePage() {
         assertTrue(locatorFormViewPage.containsText("Public Health Passenger Locator Form"));
         assertTrue(locatorFormViewPage.containsText("Passenger Type"));
     }
@@ -71,8 +71,8 @@ public class LocatorFormSteps extends TestBase {
         locatorFormViewPage.clickNext();
     }
 
-    @Then("'Flight' details page loads")
-    public void loadFlightDetails() {
+    @Then("'Flight' Page loads")
+    public void loadFlightPage() {
         assertTrue(locatorFormViewPage.containsText("Public Health Passenger Locator Form"));
         assertTrue(locatorFormViewPage.containsText("Flight"));
     }
@@ -100,5 +100,232 @@ public class LocatorFormSteps extends TestBase {
     @And("User Select Purpose of Visit")
     public void selectPurposeOfVist() {
         locatorFormViewPage.selectPurposeOfVist();
+    }
+
+    @Then("'Personal Info' Page loads")
+    public void loadPersonalInfoPage() {
+        assertTrue(locatorFormViewPage.containsText("Public Health Passenger Locator Form"));
+        assertTrue(locatorFormViewPage.containsText("Personal Info"));
+    }
+
+    @When("User enters NationaId {string} if resident {string}")
+    public void enterNationalId(String nationalId, String resdentType) {
+        if (resdentType.trim().equals("Resident")) {
+            locatorFormViewPage.enterNatioanlId(nationalId);
+        }
+    }
+
+    @And("User selects Title")
+    public void selectTitle() {
+        locatorFormViewPage.selectTitle();
+    }
+
+    @And("User enters Last Name {string}")
+    public void enterLastName(String lastName) {
+        locatorFormViewPage.enterLastName(lastName);
+    }
+
+    @And("User enters First Name {string}")
+    public void enterFirstName(String firstName) {
+        locatorFormViewPage.enterFirstName(firstName);
+    }
+
+    @And("User enters Middle Innitial {string}")
+    public void enterMiddleInnitial(String middleName) {
+        locatorFormViewPage.enterMiddleInnitial(middleName);
+    }
+
+    @And("User selects Sex")
+    public void selectSex() {
+        locatorFormViewPage.selectSex();
+    }
+
+    @And("User enters Date of Birth {string}")
+    public void enterDateOfBirth(String dateOfBirth) {
+        locatorFormViewPage.enterDateOfBirth(dateOfBirth);
+    }
+
+    @And("User enters profession {string}")
+    public void enterProfession(String profession) {
+        locatorFormViewPage.enterProfession(profession);
+    }
+
+    @Then("'Recent Travel' Page loads")
+    public void loadRecentTravelPage() {
+        assertTrue(locatorFormViewPage.containsText("Public Health Passenger Locator Form"));
+        assertTrue(locatorFormViewPage.containsText("Recent Travel"));
+    }
+
+    @And("'Next' Button activated ,no required fields")
+    public void nextButtonActivatedWithoutRequiredField() {
+        assertFalse(locatorFormViewPage.nextButtonDisabled());
+    }
+
+    @And("User selects Countries visited during last 6 months")
+    public void selectCountriesLastVisted() {
+        locatorFormViewPage.selectCountriesLastVisted();
+    }
+
+    @And("User enters Port Of Embarkation {string}")
+    public void enterPort(String port) {
+        locatorFormViewPage.enterPortOfEmbarkation(port);
+    }
+
+    @Then("'Health' Page loads")
+    public void loadHealthPage() {
+        assertTrue(locatorFormViewPage.containsText("Public Health Passenger Locator Form"));
+        assertTrue(locatorFormViewPage.containsText("Health"));
+    }
+
+    @And("User Checks Fever Test")
+    public void checkFeverTest() {
+        locatorFormViewPage.checkFeverRadioButton();
+    }
+
+    @And("User Checks Covid test")
+    public void checkCovidTest() {
+        locatorFormViewPage.checkCovidRadioButton();
+    }
+
+    @Then("'Vaccine' Page loads")
+    public void loadVaccinePage() {
+        assertTrue(locatorFormViewPage.containsText("Public Health Passenger Locator Form"));
+        assertTrue(locatorFormViewPage.containsText("Vaccine"));
+    }
+
+    @And("User Selects Whether Vaccinated")
+    public void selectsVaccinated() {
+        locatorFormViewPage.checkVaccineRadioButton();
+    }
+
+    @And("User Selects Name of First Vaccine")
+    public void selctsNameOfFirstVaccine() {
+        locatorFormViewPage.selectFirstVaccine();
+    }
+
+    @And("User Enters Date Of First Dose")
+    public void enterDateOfFirstDoze() {
+        locatorFormViewPage.enterDateOfFirstDoze(Utils.getPastDate());
+    }
+
+    @And("User Selects Name of Second Vaccine")
+    public void selctsNameOfSecondVaccine() {
+        locatorFormViewPage.selectSecondVaccine();
+    }
+
+    @And("User Enters Date Of Second Dose")
+    public void enterDateOfSecondtDoze() {
+        locatorFormViewPage.enterDateOfSecondDoze(Utils.getPastDate());
+    }
+
+    @Then("'Contact Info' Page loads")
+    public void loadContactInfoPage() {
+        assertTrue(locatorFormViewPage.containsText("Public Health Passenger Locator Form"));
+        assertTrue(locatorFormViewPage.containsText("Contact Info"));
+    }
+
+    @When("User Enters Mobile Phone {string}")
+    public void enterPhoneNumber(String phoneNumber) {
+        locatorFormViewPage.enterPhoneNumber(phoneNumber);
+    }
+
+    @And("User Enters and Confirm Email {string}")
+    public void enterEmail(String email) {
+        locatorFormViewPage.enterEmail(email);
+        locatorFormViewPage.enterEmailConfirm(email);
+    }
+
+    @And("User selects Country of Birth")
+    public void selectCountryOfBirth() {
+        locatorFormViewPage.selectCountryOfBirth();
+    }
+
+    @And("User selects Passport Country of Issue")
+    public void selectPassportCountry() {
+        locatorFormViewPage.selectCountryOfPassport();
+    }
+
+    @And("User enters Passport Number {string}")
+    public void enterPassportNumber(String passportNumber) {
+        locatorFormViewPage.enterPassportNumber(passportNumber);
+    }
+
+    @And("User enters Date Of Expiry")
+    public void enterDateOfExpiry() {
+        locatorFormViewPage.enterDateOfExpiry(Utils.getFutureDate());
+    }
+
+    @Then("'Addresses' Page loads")
+    public void loadAdressPage() {
+        assertTrue(locatorFormViewPage.containsText("Public Health Passenger Locator Form"));
+        assertTrue(locatorFormViewPage.containsText("Addresses"));
+    }
+
+    @When("User enters Permanet Address, Number and Street {string}")
+    public void enterPermanetAddressStreet(String street) {
+        locatorFormViewPage.enterPermanetAddresStreet(street);
+    }
+
+    @And("User enters Permanet Address, Apartment Number {string}")
+    public void enterPermanetAddressApartment(String apartment) {
+        locatorFormViewPage.enterPermanetAddresApartment(apartment);
+    }
+
+    @And("User enters Permanet Address, City {string}")
+    public void enterPermanetAddressCity(String city) {
+        locatorFormViewPage.enterPermanetAddresCity(city);
+    }
+
+    @And("User enters Temporary Address, Hotel Name {string}")
+    public void enterTemporalyAddressHotel(String hotel) {
+        locatorFormViewPage.enterTemporalyAddresHotel(hotel);
+    }
+
+    @And("User enters Temporary Address, Number and Street {string}")
+    public void enterTemporalyAddressStreet(String street) {
+        locatorFormViewPage.enterTemporalyAddresStreet(street);
+    }
+
+    @And("User enters Temporary Address, Apartment Number {string}")
+    public void enterTemporalyAddressApartment(String apartment) {
+        locatorFormViewPage.enterTemporalyAddresApartment(apartment);
+    }
+
+    @And("User enters Proposed Length of Stay in Mauritius for Non Resdent {string}")
+    public void enterProposedLengthOfStay(String resdentType) {
+        if (resdentType.trim().equals("Non-Resident")) {
+            locatorFormViewPage.enterProposedLenthOfStay("3");
+        }
+    }
+
+    @Then("'Emergency Contact' Page loads")
+    public void loadEmergencyContactPage() {
+        assertTrue(locatorFormViewPage.containsText("Public Health Passenger Locator Form"));
+        assertTrue(locatorFormViewPage.containsText("Emergency Contact"));
+    }
+
+    @When("User enters Emergency Contact ,Last Name {string}")
+    public void enterEmergencyContactLastName(String lastName) {
+        locatorFormViewPage.enterEmergencyContactLastName(lastName);
+    }
+
+    @And("User enters Emergency Contact ,First Name {string}")
+    public void enterEmergencyContactFirstName(String firstName) {
+        locatorFormViewPage.enterEmergencyContactFirstName(firstName);
+    }
+
+    @And("User enters Emergency Contact ,Address {string}")
+    public void enterEmergencyContactAddres(String addres) {
+        locatorFormViewPage.enterEmergencyContactAddres(addres);
+    }
+
+    @And("User selects Emergency Contact ,Country")
+    public void selectEmergencyContactCountry() {
+        locatorFormViewPage.selectEmergencyCountry();
+    }
+
+    @And("User enters Emergency Contact ,Mobile Phone {string}")
+    public void enterEmergencyContactMobileNumber(String mobileNumber) {
+        locatorFormViewPage.enterEmergencyContactMobileNumber(mobileNumber);
     }
 }
