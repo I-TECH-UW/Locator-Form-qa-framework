@@ -22,6 +22,8 @@ And User enters seat Number "<seatNumber>"
 And User enters Date of Arrival 
 And User Select Purpose of Visit
 Then 'Next' Button activated after user fills required details
+When User clicks 'Back', to go to the previous step
+Then User information is still populated in the fields , and can click 'Next' to move back the current step
 When User clicks 'Next' Button
 # step 3  personal Information
 Then 'Personal Info' Page loads
@@ -35,6 +37,8 @@ And User selects Sex
 And User enters Date of Birth "<dob>"
 And User enters profession "<profession>"
 Then 'Next' Button activated after user fills required details
+When User clicks 'Back', to go to the previous step
+Then User information is still populated in the fields , and can click 'Next' to move back the current step
 When User clicks 'Next' Button
 # step 4  Recent Travel
 Then 'Recent Travel' Page loads
@@ -47,6 +51,8 @@ Then 'Health' Page loads
 And 'Next' Button activated ,no required fields
 And User Checks Fever Test
 And User Checks Covid test
+When User clicks 'Back', to go to the previous step
+Then User information is still populated in the fields , and can click 'Next' to move back the current step
 When User clicks 'Next' Button
 # step 5  Vaccine
 Then 'Vaccine' Page loads
@@ -56,6 +62,8 @@ And User Selects Name of First Vaccine
 And User Enters Date Of First Dose
 And User Selects Name of Second Vaccine
 And User Enters Date Of Second Dose
+When User clicks 'Back', to go to the previous step
+Then User information is still populated in the fields , and can click 'Next' to move back the current step
 When User clicks 'Next' Button
 # step 6  Contact Info
 Then 'Contact Info' Page loads
@@ -67,6 +75,8 @@ And User selects Passport Country of Issue
 And User enters Passport Number "<passport>"
 And User enters Date Of Expiry
 Then 'Next' Button activated after user fills required details
+When User clicks 'Back', to go to the previous step
+Then User information is still populated in the fields , and can click 'Next' to move back the current step
 When User clicks 'Next' Button
 # step 6 Addresses
 Then 'Addresses' Page loads
@@ -79,6 +89,8 @@ And User enters Temporary Address, Number and Street "<street>"
 And User enters Temporary Address, Apartment Number "<apartment>"
 And User enters Proposed Length of Stay in Mauritius for Non Resdent "<residentType>"
 Then 'Next' Button activated after user fills required details
+When User clicks 'Back', to go to the previous step
+Then User information is still populated in the fields , and can click 'Next' to move back the current step
 When User clicks 'Next' Button
 # step 7 Emergency Contact
 Then 'Emergency Contact' Page loads
@@ -89,7 +101,42 @@ And User enters Emergency Contact ,Address "<street>"
 And User selects Emergency Contact ,Country
 And User enters Emergency Contact ,Mobile Phone "<phoneNumber>"
 Then 'Next' Button activated after user fills required details
+When User clicks 'Back', to go to the previous step
+Then User information is still populated in the fields , and can click 'Next' to move back the current step
+When User clicks 'Next' Button
+# step 8 Travel Companions
+Then 'Travel Companions' Page loads
+And 'Next' Button activated ,no required fields
+When User Clicks 'Add Travel Companion Family' Button
+Then 'Next' Button Disabled before user fills required details
+When User Enters Travel Companion ,Last Name "<lastName>"
+And User Enters Travel Companion ,First Name "<firstName>"
+And User selects Travel Companion ,sex
+And User Enters Travel Companion ,Seat "<seatNumber>"
+And User Enters Travel Companion ,Date Of Birth "<dob>"
+And User selects Travel Companion ,Nationality 
+And User Enters Travel Companion ,Passport Number "<companionPassport>"
+Then 'Next' Button activated after user fills required details 
+When User Clicks 'Add Travel Companion Family' Button again,to add another Family Companion
+Then 'Next' Button Disabled before user fills required details
+When User Removes the Extra Added Family Companion
+Then 'Next' Button activated after user fills required details
+When User Clicks 'Add Travel Companion Non-Family' Button ,to add Non-Family Companion
+Then 'Next' Button Disabled before user fills required details
+When User removes the Added Non-Family Companion
+Then 'Next' Button activated after user fills required details
+When User clicks 'Back', to go to the previous step
+Then User information is still populated in the fields , and can click 'Next' to move back the current step
+When User clicks 'Next' Button
+# step 9 Confirmation
+Then 'Confirmation' Page loads
+And Confirmation Page contains the right Summary Information
+And 'Submit' Button Disabled before User checks Accept terms CheckBox
+When User checks Accept terms CheckBox
+Then 'Submit' Button activated after User checks Accept terms CheckBox
+When User clicks 'Back', to go to the previous step
+Then User information is still populated in the fields , and can click 'Next' to move back the current step
 Examples:
-     |residentType |flightNumber|seatNumber|natianalId |lastName |firstName |middleInnitial|dob        |profession|port    |phoneNumber    |email          |passport |street        |apartment|city   |hotel |
-     |Resident     | AA35       |SEAT1     | AANNBB1   |mozzy    |mutesa    | mm           |04/27/1992 |engineer  |PortBell|56565656       |mozzy@gmail.com|PASSPORT1|Kampala,Gayaza|003      |Kampala|Serena|
-     |Non-Resident | AA35       |SEAT1     | AANNBB2   |mozzy    |mutesa    | mm           |04/27/1992 |engineer  |PortBell|949 494 9494   |mozzy@gmail.com|PASSPORT1|Kampala,Gayaza|003      |Kampala|Serena|
+     |residentType |flightNumber|seatNumber|natianalId |lastName |firstName |middleInnitial|dob        |profession|port    |phoneNumber    |email          |passport |street        |apartment|city   |hotel |companionPassport|
+     |Resident     | AA35       |SEAT1     | AANNBB1   |mozzy    |mutesa    | mm           |04/27/1992 |engineer  |PortBell|56565656       |mozzy@gmail.com|PASSPORT1|Kampala,Gayaza|003      |Kampala|Serena|PASSPORT3        |
+     |Non-Resident | AA35       |SEAT1     | AANNBB2   |mozzy    |mutesa    | mm           |04/27/1992 |engineer  |PortBell|949 494 9494   |mozzy@gmail.com|PASSPORT2|Kampala,Gayaza|003      |Kampala|Serena|PASSPORT4        |
