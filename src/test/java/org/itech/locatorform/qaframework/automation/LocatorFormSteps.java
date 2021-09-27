@@ -328,4 +328,114 @@ public class LocatorFormSteps extends TestBase {
     public void enterEmergencyContactMobileNumber(String mobileNumber) {
         locatorFormViewPage.enterEmergencyContactMobileNumber(mobileNumber);
     }
+
+    @Then("'Travel Companions' Page loads")
+    public void loadTravelCompanionPage() {
+        assertTrue(locatorFormViewPage.containsText("Public Health Passenger Locator Form"));
+        assertTrue(locatorFormViewPage.containsText("Travel Companions"));
+    }
+
+    @When("User Clicks 'Add Travel Companion Family' Button")
+    public void clickAddTravelCompanionFamily() {
+        locatorFormViewPage.clickAddTravelCompanionFamily();
+    }
+
+    @And("User Enters Travel Companion ,Last Name {string}")
+    public void enterravelCompanionFamilyLastName(String name) {
+        locatorFormViewPage.enterTravelCompanionFamilyLastName(name);
+    }
+
+    @And("User Enters Travel Companion ,First Name {string}")
+    public void enterTravelCompanionFamilyFirstName(String name) {
+        locatorFormViewPage.enterTravelCompanionFamilyFirstName(name);
+    }
+
+    @And("User selects Travel Companion ,sex")
+    public void selectTravelCompanionFamilySex() {
+        locatorFormViewPage.selectFamilyCompanionSex();
+    }
+
+    @And("User Enters Travel Companion ,Seat {string}")
+    public void enterTravelCompanionFamilySeatNumber(String seat) {
+        locatorFormViewPage.enterTravelCompanionFamilySeat(seat);
+    }
+
+    @And("User Enters Travel Companion ,Date Of Birth {string}")
+    public void enterTravelCompanionFamilyDateOfBirth(String date) {
+        locatorFormViewPage.enterTravelCompanionDateOfBrith(date);
+    }
+
+    @And("User selects Travel Companion ,Nationality")
+    public void selectTravelCompanionFamilyNationality() {
+        locatorFormViewPage.selectFamilyCompanionNationality();
+    }
+
+    @And("User Enters Travel Companion ,Passport Number {string}")
+    public void enterTravelCompanionFamilyPassportNumber(String passportNumber) {
+        locatorFormViewPage.enterTravelCompanionPassportNumber(passportNumber);
+    }
+
+    @When("User Clicks 'Add Travel Companion Family' Button again,to add another Family Companion")
+    public void clickAddMoreTravelCompanionFamily() {
+        locatorFormViewPage.clickAddTravelCompanionFamily();
+    }
+
+    @When("User Removes the Extra Added Family Companion")
+    public void removeExtraTravelCompanionFamily() {
+        locatorFormViewPage.clickRemoveTravelCompanionFamily2();
+    }
+
+    @When("User Clicks 'Add Travel Companion Non-Family' Button ,to add Non-Family Companion")
+    public void clickAddTravelCompanionNonFamily() {
+        locatorFormViewPage.clickAddTravelCompanionNonFamily();
+    }
+
+    @When("User removes the Added Non-Family Companion")
+    public void removeExtraTravelCompanionNonFamily() {
+        locatorFormViewPage.clickRemoveTravelCompanionNonFamily();
+    }
+
+    @When("User clicks 'Back', to go to the previous step")
+    public void clickBack() {
+        locatorFormViewPage.clickBack();
+    }
+
+    @Then("User information is still populated in the fields , and can click 'Next' to move back the current step")
+    public void userInformationIsCached() {
+        assertFalse(locatorFormViewPage.nextButtonDisabled());
+        locatorFormViewPage.clickNext();
+    }
+
+    @Then("'Confirmation' Page loads")
+    public void loadConfirmationPage() {
+        assertTrue(locatorFormViewPage.containsText("Confirmation"));
+    }
+
+    @Then("Confirmation Page contains the right Summary Information")
+    public void confirmationPageHasRightSummary() {
+        assertTrue(locatorFormViewPage.containsText("Personal Information"));
+        assertTrue(locatorFormViewPage.containsText("mozzy"));
+        assertTrue(locatorFormViewPage.containsText("mutesa"));
+    }
+
+    @When("User checks Accept terms CheckBox")
+    public void checkAcceptTerms() {
+        locatorFormViewPage.checkAcceptsTermsCheckBox();
+    }
+
+    @Then("'Submit' Button Disabled before User checks Accept terms CheckBox")
+    public void submitButtonDisabled() {
+        assertTrue(locatorFormViewPage.submitButtonDisabled());
+    }
+
+    @Then("'Submit' Button activated after User checks Accept terms CheckBox")
+    public void submitButtonActivated() {
+        assertFalse(locatorFormViewPage.submitButtonDisabled());
+        try {
+            Thread.sleep(100000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }

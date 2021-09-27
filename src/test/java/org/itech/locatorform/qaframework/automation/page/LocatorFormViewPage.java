@@ -8,11 +8,15 @@ public class LocatorFormViewPage extends Page {
 
     private static final By BUTTON_NEXT = By.className("next-button");
 
+    private static final By BUTTON_SUBMIT = By.className("confirm-button");
+
     private static final By BUTTON_BACK = By.className("back-button");
 
     private static final By RADIO_BUTTON_RESDENT = By.id("resident");
 
     private static final By RADIO_BUTTON_NON_RESDENT = By.id("nonresident");
+
+    private static final By CHECK_BOX_ACCEPT_TERMS = By.name("acceptedTerms");
 
     private static final By RADIO_BUTTON_FEVER = By.name("fever");
 
@@ -76,6 +80,28 @@ public class LocatorFormViewPage extends Page {
 
     private static final By FIELD_EMERGENCE_CONTACT_MOBILE_NUMBER = By.name("emergencyContact.mobilePhone");
 
+    private static final By BUTTON_ADD_TRAVEL_COMPANION_FAMILY = By
+            .xpath("//*[@id='travelCompanionsInformation']/div[2]/button");
+
+    private static final By BUTTON_ADD_TRAVEL_COMPANION_NON_FAMILY = By
+            .xpath("//*[@id='nonFamilyTravelCompanionInformation']/div[2]/div/div/button");
+
+    private static final By FIELD_FAMILY_COMPANION_LAST_NAME = By.name("familyTravelCompanions.0.lastName");
+
+    private static final By FIELD_FAMILY_COMPANION_FIRST_NAME = By.name("familyTravelCompanions.0.firstName");
+
+    private static final By FIELD_FAMILY_COMPANION_SEAT_NUMBER = By.name("familyTravelCompanions.0.seatNumber");
+
+    private static final By FIELD_FAMILY_COMPANION_DATE_OF_BIRTH = By.name("familyTravelCompanions.0.dateOfBirth");
+
+    private static final By FIELD_FAMILY_COMPANION_PASPORT = By.name("familyTravelCompanions.0.passportNumber");
+
+    private static final By BUTTON_REMOVE_TRAVEL_COMPANION_FAMILY_2 = By
+            .xpath("//*[@id='travelCompanionsInformation']/div[2]/div[2]/div[2]/div[5]/button");
+
+    private static final By BUTTON_REMOVE_TRAVEL_COMPANION_NON_FAMILY = By
+            .xpath("//*[@id='nonFamilyTravelCompanionInformation']/div[2]/div[1]/div[2]/div[5]/button");
+
     public LocatorFormViewPage(WebDriver driver) {
         super(driver);
     }
@@ -97,12 +123,44 @@ public class LocatorFormViewPage extends Page {
         return isDisabled(BUTTON_NEXT);
     }
 
+    public Boolean submitButtonDisabled() {
+        return isDisabled(BUTTON_SUBMIT);
+    }
+
     public void clickNext() {
         clickOnByJavascript(BUTTON_NEXT);
     }
 
+    public void clickSubmit() {
+        clickOnByJavascript(BUTTON_SUBMIT);
+    }
+
+    public void clickBack() {
+        clickOnByJavascript(BUTTON_BACK);
+    }
+
+    public void clickAddTravelCompanionFamily() {
+        clickOnByJavascript(BUTTON_ADD_TRAVEL_COMPANION_FAMILY);
+    }
+
+    public void clickAddTravelCompanionNonFamily() {
+        clickOnByJavascript(BUTTON_ADD_TRAVEL_COMPANION_NON_FAMILY);
+    }
+
+    public void clickRemoveTravelCompanionFamily2() {
+        clickOnByJavascript(BUTTON_REMOVE_TRAVEL_COMPANION_FAMILY_2);
+    }
+
+    public void clickRemoveTravelCompanionNonFamily() {
+        clickOnByJavascript(BUTTON_REMOVE_TRAVEL_COMPANION_NON_FAMILY);
+    }
+
     public void checkFeverRadioButton() {
         clickOnByJavascript(RADIO_BUTTON_FEVER);
+    }
+
+    public void checkAcceptsTermsCheckBox() {
+        clickOnByJavascript(CHECK_BOX_ACCEPT_TERMS);
     }
 
     public void checkCovidRadioButton() {
@@ -151,6 +209,14 @@ public class LocatorFormViewPage extends Page {
 
     public void selectEmergencyCountry() {
         selectReactOptionByJavacript("emergencyContact.country");
+    }
+
+    public void selectFamilyCompanionSex() {
+        selectReactOptionByJavacript("familyTravelCompanions.0.sex");
+    }
+
+    public void selectFamilyCompanionNationality() {
+        selectReactOptionByJavacript("familyTravelCompanions.0.nationality");
     }
 
     public void enterFlightNumber(String flightNumber) {
@@ -263,5 +329,25 @@ public class LocatorFormViewPage extends Page {
 
     public void enterEmergencyContactMobileNumber(String mobileNumber) {
         setTextToFieldNoEnter(FIELD_EMERGENCE_CONTACT_MOBILE_NUMBER, mobileNumber);
+    }
+
+    public void enterTravelCompanionFamilyLastName(String name) {
+        setTextToFieldNoEnter(FIELD_FAMILY_COMPANION_LAST_NAME, name);
+    }
+
+    public void enterTravelCompanionFamilyFirstName(String name) {
+        setTextToFieldNoEnter(FIELD_FAMILY_COMPANION_FIRST_NAME, name);
+    }
+
+    public void enterTravelCompanionFamilySeat(String seat) {
+        setTextToFieldNoEnter(FIELD_FAMILY_COMPANION_SEAT_NUMBER, seat);
+    }
+
+    public void enterTravelCompanionDateOfBrith(String date) {
+        setTextToFieldNoEnter(FIELD_FAMILY_COMPANION_DATE_OF_BIRTH, date);
+    }
+
+    public void enterTravelCompanionPassportNumber(String passportNumber) {
+        setTextToFieldNoEnter(FIELD_FAMILY_COMPANION_PASPORT, passportNumber);
     }
 }
