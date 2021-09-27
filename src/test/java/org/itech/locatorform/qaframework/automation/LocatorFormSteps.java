@@ -431,11 +431,5 @@ public class LocatorFormSteps extends TestBase {
     @Then("'Submit' Button activated after User checks Accept terms CheckBox")
     public void submitButtonActivated() {
         assertFalse(locatorFormViewPage.submitButtonDisabled());
-        try {
-            Thread.sleep(100000);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
     }
 }
