@@ -5,6 +5,7 @@ import org.itech.locatorform.qaframework.automation.page.LocatorFormViewPage;
 import org.itech.locatorform.qaframework.automation.page.KeyClockLoginPage;
 import org.itech.locatorform.qaframework.automation.utils.Utils;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -431,5 +432,30 @@ public class LocatorFormSteps extends TestBase {
     @Then("'Submit' Button activated after User checks Accept terms CheckBox")
     public void submitButtonActivated() {
         assertFalse(locatorFormViewPage.submitButtonDisabled());
+    }
+
+    @When("User Clicks 'Submit' Button")
+    public void clickSubmit() {
+        locatorFormViewPage.clickSubmit();
+    }
+
+    @Then("'Summary' Page loads")
+    public void loadSummaryPage() throws InterruptedException {
+        locatorFormViewPage.waitForSuccesMessage();
+        Thread.sleep(5000);
+        assertEquals(locatorFormViewPage.getSubmitButtonText(), "Print Summary");
+        assertTrue(locatorFormViewPage.containsText("Personal Information"));
+        assertTrue(locatorFormViewPage.containsText("mozzy"));
+        assertTrue(locatorFormViewPage.containsText("mutesa"));
+    }
+
+    @When("User Clicks 'Print Summary' Button")
+    public void clickPrintSummary() {
+        locatorFormViewPage.clickSubmit();
+    }
+
+    @Then("Summary Pdf is generated")
+    public void summaryPdfGenerated() {
+        locatorFormViewPage.verifyReportPrinted();
     }
 }
