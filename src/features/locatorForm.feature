@@ -136,6 +136,10 @@ When User checks Accept terms CheckBox
 Then 'Submit' Button activated after User checks Accept terms CheckBox
 When User clicks 'Back', to go to the previous step
 Then User information is still populated in the fields , and can click 'Next' to move back the current step
+When User Clicks 'Submit' Button
+Then 'Summary' Page loads
+When User Clicks 'Print Summary' Button
+Then Summary Pdf is generated
 Examples:
      |residentType |flightNumber|seatNumber|natianalId |lastName |firstName |middleInnitial|dob        |profession|port    |phoneNumber    |email          |passport |street        |apartment|city   |hotel |companionPassport|
      |Resident     | AA35       |SEAT1     | AANNBB1   |mozzy    |mutesa    | mm           |04/27/1992 |engineer  |PortBell|56565656       |mozzy@gmail.com|PASSPORT1|Kampala,Gayaza|003      |Kampala|Serena|PASSPORT3        |

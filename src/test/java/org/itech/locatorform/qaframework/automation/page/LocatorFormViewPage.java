@@ -102,6 +102,8 @@ public class LocatorFormViewPage extends Page {
     private static final By BUTTON_REMOVE_TRAVEL_COMPANION_NON_FAMILY = By
             .xpath("//*[@id='nonFamilyTravelCompanionInformation']/div[2]/div[1]/div[2]/div[5]/button");
 
+    private static final By SUCCES_MESSAGE = By.xpath("//*[@id='questions']/div/div[1]/div");
+
     public LocatorFormViewPage(WebDriver driver) {
         super(driver);
     }
@@ -349,5 +351,13 @@ public class LocatorFormViewPage extends Page {
 
     public void enterTravelCompanionPassportNumber(String passportNumber) {
         setTextToFieldNoEnter(FIELD_FAMILY_COMPANION_PASPORT, passportNumber);
+    }
+
+    public String getSubmitButtonText() {
+        return getText(BUTTON_SUBMIT);
+    }
+
+    public void waitForSuccesMessage() {
+        waitForElement(SUCCES_MESSAGE);
     }
 }
