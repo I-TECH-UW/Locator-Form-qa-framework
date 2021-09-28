@@ -442,7 +442,7 @@ public class LocatorFormSteps extends TestBase {
     @Then("'Summary' Page loads")
     public void loadSummaryPage() throws InterruptedException {
         locatorFormViewPage.waitForSuccesMessage();
-        Thread.sleep(5000);
+        Thread.sleep(10000);
         assertEquals(locatorFormViewPage.getSubmitButtonText(), "Print Summary");
         assertTrue(locatorFormViewPage.containsText("Personal Information"));
         assertTrue(locatorFormViewPage.containsText("mozzy"));
