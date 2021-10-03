@@ -1,6 +1,6 @@
 Feature: Locator Form Work Flow
 
-@locator1
+@locator
 Scenario Outline:Public View Work flow
 # step 1 Passenger Type
 When User Loads the Public View form
