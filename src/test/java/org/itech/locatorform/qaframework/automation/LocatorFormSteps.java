@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.itech.locatorform.qaframework.RunTest;
 import org.itech.locatorform.qaframework.automation.page.HealthDeskViewPage;
 
 import io.cucumber.java.After;
@@ -21,20 +22,20 @@ public class LocatorFormSteps extends TestBase {
 
     private LocatorFormViewPage locatorFormViewPage;
 
-    @After()
+    private HealthDeskViewPage healthDeskViewPage;
+
+    private KeyClockLoginPage keyClockLoginPage;
+
+    @After(RunTest.HOOK.LOCATOR_FORM)
     public void destroy() {
         quit();
     }
 
-    @Before()
+    @Before(RunTest.HOOK.LOCATOR_FORM)
     public void setLoginPage() {
-        System.out.println("....Locator Form Test......");
+        System.out.println(".... Locator Form Work Flow......");
         locatorFormViewPage = new LocatorFormViewPage(getWebDriver());
-    }
-
-    @When("User Logs in to the Health Desk View")
-    public void userLogsToHealthDeskView() {
-        System.out.println("User Logs in to the Health Desk View");
+        healthDeskViewPage = new HealthDeskViewPage(getWebDriver());
     }
 
     @When("User Loads the Public View form")
@@ -457,5 +458,50 @@ public class LocatorFormSteps extends TestBase {
     @Then("Summary Pdf is generated")
     public void summaryPdfGenerated() {
         locatorFormViewPage.verifyReportPrinted();
+    }
+
+    @When("User Loads the Health Desk View")
+    public void userloadsHealthDeskView() {
+        healthDeskViewPage.go();
+    }
+
+    @Then("User is redirected to KeyClock Login Page")
+    public void redirectToKeyCloack() {
+        keyClockLoginPage = healthDeskViewPage.redirectToKeyClockLogin();
+    }
+
+    @When("User Logs in to KeyCloak Login Page")
+    public void userLOgsInToKeyCloack() {
+        healthDeskViewPage = keyClockLoginPage.loginAndGoToHealthDeskViewPage();
+    }
+
+    @Then("User is redirected to Health Desk View Page")
+    public void redirectToHealthDeskView() {
+        healthDeskViewPage.waitForPageToLoad();
+        assertTrue(healthDeskViewPage.containsText("Health Desk"));
+    }
+
+    @When("Users Enters Passport Number {string} for Search")
+    public void enterPassport(String passport) {
+        healthDeskViewPage.enterSearchText(passport);
+    }
+
+    @Then("Page returns Search Results")
+    public void returnSearchResults() {
+        assertTrue(healthDeskViewPage.hasSearchResults());
+        assertTrue(healthDeskViewPage.containsText("Passport Number"));
+        assertTrue(healthDeskViewPage.containsText("Given Name"));
+        assertTrue(healthDeskViewPage.containsText("Family Name"));
+    }
+
+    @When("User Clicks on Passenger search Result")
+    public void clickSearchResult() {
+        healthDeskViewPage.clickPassengerResult();
+    }
+
+    @Then("Form displays with User details")
+    public void diplayUserDetails() {
+        assertEquals("mozzy", healthDeskViewPage.getLastName());
+        assertEquals("mutesa", healthDeskViewPage.getFirstName());
     }
 }

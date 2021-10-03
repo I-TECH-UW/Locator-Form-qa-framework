@@ -1,10 +1,6 @@
-Feature: Locator Form  Flows
+Feature: Locator Form Work Flow
 
-
-Scenario:Health Desk View Work flow
-When User Logs in to the Health Desk View
-
-
+@locator1
 Scenario Outline:Public View Work flow
 # step 1 Passenger Type
 When User Loads the Public View form
@@ -144,3 +140,17 @@ Examples:
      |residentType |flightNumber|seatNumber|natianalId |lastName |firstName |middleInnitial|dob        |profession|port    |phoneNumber    |email          |passport |street        |apartment|city   |hotel |companionPassport|
      |Resident     | AA35       |SEAT1     | AANNBB1   |mozzy    |mutesa    | mm           |04/27/1992 |engineer  |PortBell|56565656       |mozzy@gmail.com|PASSPORT1|Kampala,Gayaza|003      |Kampala|Serena|PASSPORT3        |
      |Non-Resident | AA35       |SEAT1     | AANNBB2   |mozzy    |mutesa    | mm           |04/27/1992 |engineer  |PortBell|949 494 9494   |mozzy@gmail.com|PASSPORT2|Kampala,Gayaza|003      |Kampala|Serena|PASSPORT4        |
+
+@locator
+Scenario:Health Desk View Work flow
+When User Loads the Health Desk View
+Then User is redirected to KeyClock Login Page
+When User Logs in to KeyCloak Login Page
+Then User is redirected to Health Desk View Page
+When Users Enters Passport Number "<passport>" for Search
+Then Page returns Search Results
+When User Clicks on Passenger search Result 
+Then Form displays with User details
+Examples: 
+     |passport |
+     |PASSPORT2|
