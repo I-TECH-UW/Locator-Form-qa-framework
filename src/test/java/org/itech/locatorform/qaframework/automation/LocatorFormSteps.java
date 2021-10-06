@@ -11,6 +11,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.itech.locatorform.qaframework.RunTest;
 import org.itech.locatorform.qaframework.automation.page.HealthDeskViewPage;
+import org.itech.locatorform.qaframework.automation.page.ReferralOpenElisLoginPage;
+import org.itech.locatorform.qaframework.automation.page.ReferralOpenELisHomePage;
+import org.itech.locatorform.qaframework.automation.page.ReferralOpenElisElectronicOrderPage;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -26,6 +29,12 @@ public class LocatorFormSteps extends TestBase {
 
     private KeyClockLoginPage keyClockLoginPage;
 
+    private ReferralOpenElisLoginPage referralOpenElisLoginPage;
+
+    private ReferralOpenELisHomePage referralOpenELisHomePage;
+
+    private ReferralOpenElisElectronicOrderPage referralOpenElisElectronicOrderPage;
+
     @After(RunTest.HOOK.LOCATOR_FORM)
     public void destroy() {
         quit();
@@ -36,6 +45,7 @@ public class LocatorFormSteps extends TestBase {
         System.out.println(".... Locator Form Work Flow......");
         locatorFormViewPage = new LocatorFormViewPage(getWebDriver());
         healthDeskViewPage = new HealthDeskViewPage(getWebDriver());
+        referralOpenElisLoginPage = new ReferralOpenElisLoginPage(getWebDriver());
     }
 
     @When("User Loads the Public View form")
@@ -495,13 +505,67 @@ public class LocatorFormSteps extends TestBase {
     }
 
     @When("User Clicks on Passenger search Result")
-    public void clickSearchResult() {
-        healthDeskViewPage.clickPassengerResult();
+    public void clickSearchResult() throws InterruptedException {
+        healthDeskViewPage.clickNthPassengerResult();
     }
 
     @Then("Form displays with User details")
     public void diplayUserDetails() {
         assertEquals("mozzy", healthDeskViewPage.getLastName());
         assertEquals("mutesa", healthDeskViewPage.getFirstName());
+    }
+
+    @And("Submit Button is disabled before TestKid is filled")
+    public void submitButtonDisabledBeforeTestKidFilled() {
+        assertTrue(healthDeskViewPage.submitButtonDisabled());
+    }
+
+    @When("User enters TestKid {string}")
+    public void enterTestKid(String testKid) {
+        healthDeskViewPage.enterTestKid(testKid);
+    }
+
+    @Then("Submit Button is enabled if all details filled correctly")
+    public void submitButtonEnabledAfterTestKidFilled() {
+        if (healthDeskViewPage.submitButtonDisabled()) {
+            healthDeskViewPage.enterArrivalDate(Utils.getFutureDate());
+        }
+        assertFalse(healthDeskViewPage.submitButtonDisabled());
+    }
+
+    @When("User Clicks Submit")
+    public void clickSubmitButton() {
+        healthDeskViewPage.clickSubmit();
+    }
+
+    @Then("Page displays 'Save Successful' message")
+    public void displaySuccesMessage() throws InterruptedException {
+        Thread.sleep(2000);
+        assertTrue(healthDeskViewPage.containsText("Save Successful"));
+    }
+
+    @When("User logs in into the referral OpenELIS System")
+    public void loginToOpenElis() {
+        referralOpenELisHomePage = referralOpenElisLoginPage.goToReferralHomePage();
+    }
+
+    @Then("User is able to log in into the referral OpenELIS System")
+    public void userLoginsInToReferralSystem() {
+        assertTrue(referralOpenELisHomePage.hasLogout());
+    }
+
+    @When("User Goes to Order tab --> Electronic Orders")
+    public void goToElectronicOrder() {
+        referralOpenElisElectronicOrderPage = referralOpenELisHomePage.goToElectronicOrderPage();
+    }
+
+    @And("User Enters Passport number {string} in Search Test Requests, and Click Search")
+    public void enterLabNumberSearch(String passport) {
+        referralOpenElisElectronicOrderPage.enterSearchText(passport);
+    }
+
+    @Then("Order details appear in the table")
+    public void getElectronocOrders() throws InterruptedException {
+        assertTrue(referralOpenElisElectronicOrderPage.hasSentOrders());
     }
 }
