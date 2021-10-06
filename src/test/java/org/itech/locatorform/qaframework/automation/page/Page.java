@@ -34,6 +34,8 @@ public abstract class Page {
 
 	protected final WebDriver driver;
 
+	private final String referralServerUrl;
+
 	public WebDriver getDriver() {
 		return this.driver;
 	}
@@ -92,10 +94,17 @@ public abstract class Page {
 		this.driver = driver;
 
 		String webAppUrl = properties.getWebAppUrl();
+		String referralWebAppUrl = properties.getReferralWebAppUrl();
 		if (webAppUrl.endsWith("/")) {
 			webAppUrl = webAppUrl.substring(0, webAppUrl.length() - 1);
 		}
+
+		if (referralWebAppUrl.endsWith("/")) {
+			referralWebAppUrl = referralWebAppUrl.substring(0, referralWebAppUrl.length() - 1);
+		}
+
 		serverUrl = webAppUrl;
+		referralServerUrl = referralWebAppUrl;
 
 		try {
 			contextUrl = new URL(serverUrl).getPath();
@@ -152,6 +161,26 @@ public abstract class Page {
 	public void go() {
 		driver.get(getAbsolutePageUrl());
 		waitForPage();
+	}
+
+	public String newAbsoluteReferralPageUrl(String pageUrl) {
+		if (!pageUrl.startsWith("/")) {
+			pageUrl = "/" + pageUrl;
+		}
+		return referralServerUrl + pageUrl;
+	}
+
+	public void goToRefferalPage(String address) {
+		driver.get(newAbsoluteReferralPageUrl(address));
+	}
+
+	public void goToReferralPage() {
+		driver.get(getAbsoluteRefferalPageUrl());
+		waitForPage();
+	}
+
+	public String getAbsoluteRefferalPageUrl() {
+		return newAbsoluteReferralPageUrl(getPageUrl());
 	}
 
 	public WebElement findElement(By by) {

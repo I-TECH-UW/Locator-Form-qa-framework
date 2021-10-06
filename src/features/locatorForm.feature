@@ -151,6 +151,22 @@ When Users Enters Passport Number "<passport>" for Search
 Then Page returns Search Results
 When User Clicks on Passenger search Result 
 Then Form displays with User details
+And Submit Button is disabled before TestKid is filled
+When User enters TestKid "<teskid>"
+Then Submit Button is enabled if all details filled correctly
+When User Clicks Submit
+Then Page displays 'Save Successful' message
+Examples: 
+     |teskid    |passport |
+     |TestKid123|PASSPORT2|
+
+@locator
+Scenario Outline: Check Results sent electronically to the referal Lab
+When User logs in into the referral OpenELIS System
+Then User is able to log in into the referral OpenELIS System
+When User Goes to Order tab --> Electronic Orders
+And User Enters Passport number "<passport>" in Search Test Requests, and Click Search
+Then Order details appear in the table 
 Examples: 
      |passport |
-     |PASSPORT2|
+     |PASSPORT2|    
