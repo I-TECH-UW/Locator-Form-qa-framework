@@ -1,7 +1,7 @@
 Feature: Locator Form Work Flow
 
 @locator
-Scenario Outline:Public View Work flow
+Scenario Outline: Passenger Locator Form Work flow
 # step 1 Passenger Type
 When User Loads the Public View form
 Then 'Passenger Type' Page loads
@@ -142,7 +142,7 @@ Examples:
      |Non-Resident | AA35       |SEAT1     | AANNBB2   |mozzy    |mutesa    | mm           |04/27/1992 |engineer  |PortBell|949 494 9494   |mozzy@gmail.com|PASSPORT2|Kampala,Gayaza|003      |Kampala|Serena|PASSPORT4        |
 
 @locator
-Scenario:Health Desk View Work flow
+Scenario:Health Desk Work flow
 When User Loads the Health Desk View
 Then User is redirected to KeyClock Login Page
 When User Logs in to KeyCloak Login Page
@@ -166,7 +166,7 @@ When User logs in into the referral OpenELIS System
 Then User is able to log in into the referral OpenELIS System
 When User Goes to Order tab --> Electronic Orders
 And User Enters Passport number "<passport>" in Search Test Requests, and Click Search
-Then Order details appear in the table 
+Then Order details Results From search display  
 Examples: 
      |passport |
      |PASSPORT2|    

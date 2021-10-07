@@ -564,7 +564,7 @@ public class LocatorFormSteps extends TestBase {
         referralOpenElisElectronicOrderPage.enterSearchText(passport);
     }
 
-    @Then("Order details appear in the table")
+    @Then("Order details Results From search display")
     public void getElectronocOrders() throws InterruptedException {
         assertTrue(referralOpenElisElectronicOrderPage.hasSentOrders());
     }
