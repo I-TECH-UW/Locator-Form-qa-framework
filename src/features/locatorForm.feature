@@ -101,29 +101,29 @@ When User clicks 'Back', to go to the previous step
 Then User information is still populated in the fields , and can click 'Next' to move back the current step
 When User clicks 'Next' Button
 # step 8 Travel Companions
-Then 'Travel Companions' Page loads
-And 'Next' Button activated ,no required fields
-When User Clicks 'Add Travel Companion Family' Button
-Then 'Next' Button Disabled before user fills required details
-When User Enters Travel Companion ,Last Name "<lastName>"
-And User Enters Travel Companion ,First Name "<firstName>"
-And User selects Travel Companion ,sex
-And User Enters Travel Companion ,Seat "<seatNumber>"
-And User Enters Travel Companion ,Date Of Birth "<dob>"
-And User selects Travel Companion ,Nationality 
-And User Enters Travel Companion ,Passport Number "<companionPassport>"
-Then 'Next' Button activated after user fills required details 
-When User Clicks 'Add Travel Companion Family' Button again,to add another Family Companion
-Then 'Next' Button Disabled before user fills required details
-When User Removes the Extra Added Family Companion
-Then 'Next' Button activated after user fills required details
-When User Clicks 'Add Travel Companion Non-Family' Button ,to add Non-Family Companion
-Then 'Next' Button Disabled before user fills required details
-When User removes the Added Non-Family Companion
-Then 'Next' Button activated after user fills required details
-When User clicks 'Back', to go to the previous step
-Then User information is still populated in the fields , and can click 'Next' to move back the current step
-When User clicks 'Next' Button
+# Then 'Travel Companions' Page loads
+# And 'Next' Button activated ,no required fields
+# When User Clicks 'Add Travel Companion Family' Button
+# Then 'Next' Button Disabled before user fills required details
+# When User Enters Travel Companion ,Last Name "<lastName>"
+# And User Enters Travel Companion ,First Name "<firstName>"
+# And User selects Travel Companion ,sex
+# And User Enters Travel Companion ,Seat "<seatNumber>"
+# And User Enters Travel Companion ,Date Of Birth "<dob>"
+# And User selects Travel Companion ,Nationality 
+# And User Enters Travel Companion ,Passport Number "<companionPassport>"
+# Then 'Next' Button activated after user fills required details 
+# When User Clicks 'Add Travel Companion Family' Button again,to add another Family Companion
+# Then 'Next' Button Disabled before user fills required details
+# When User Removes the Extra Added Family Companion
+# Then 'Next' Button activated after user fills required details
+# When User Clicks 'Add Travel Companion Non-Family' Button ,to add Non-Family Companion
+# Then 'Next' Button Disabled before user fills required details
+# When User removes the Added Non-Family Companion
+# Then 'Next' Button activated after user fills required details
+# When User clicks 'Back', to go to the previous step
+# Then User information is still populated in the fields , and can click 'Next' to move back the current step
+# When User clicks 'Next' Button
 # step 9 Confirmation
 Then 'Confirmation' Page loads
 And Confirmation Page contains the right Summary Information
